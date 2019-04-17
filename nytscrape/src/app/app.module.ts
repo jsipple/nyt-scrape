@@ -9,17 +9,33 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from './reducers/article.reducer'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; // Angular CLI environemnt
+import { FormsModule } from '@angular/forms';
+import { FavArticlesComponent } from './articles/fav-articles/fav-articles.component'
+import { RouterModule, Routes } from '@angular/router'
+
+const appRoutes: Routes = [
+  {path: 'saved', component: FavArticlesComponent},
+  // starting page so this works
+  {path: '', component: ArticlesComponent}
+]
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticlesComponent,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    FavArticlesComponent
   ],
   imports: [
+    RouterModule.forRoot(
+      appRoutes,
+      {enableTracing: true}
+    ),
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     StoreModule.forRoot({
       articles: reducer
     }),

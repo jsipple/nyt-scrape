@@ -1,18 +1,14 @@
-<button class="btn-primary btn">submit</button>
-
-
 <div class="articles">
  <ul>
   <li *ngFor='let article of articles | async'>
-   <h2>{{article.title}}</h2>
-   <p>{{article.desc}}</p>
-  <a [href]='article.link' target='_blank'>{{article.title}}</a>
-   <button class='btn btn-success' id={{article.title}} (click)='saveArticle($event)'>save Article</button>
+   <h2>{{article.title}} <button class="btn btn-success" id={{article.title}} (click)='saveArticle($event)'>save Article</button></h2>
+   <a [href]='article.link' target='_blank'>
+   <p>{{article.desc}}</p></a>
  </li>
  </ul>
 </div>
 <!-- doesn't update after clicked basically length doesn't seem to update -->
 <!-- could make another global variable that changes to true -->
-<div *ngIf="!articles?.length > 0">
-  no articles at the moment
+<div id='noArticle' *ngIf="!articles?.length > 0">
+  No articles press scrape new articles to get the latest news from new york times
 </div>

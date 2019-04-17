@@ -4,6 +4,7 @@ import { Articles } from '../models/articles.modal'
 
 export const add_article = '[Articles] Add'
 export const favorite_article = '[Articles] favorited'
+export const delete_article = '[Articles] deleted'
 // @Injectable(providedIn: 'root'(provide service in root of App))
 @Injectable()
 export class AddArticle implements Action {
@@ -12,10 +13,15 @@ export class AddArticle implements Action {
  constructor(public payload: Articles) {}
 }
 
+export class DeleteArticles implements Action {
+ readonly type = delete_article
+ constructor() {}
+}
+
 export class FavoriteArticle implements Action {
  readonly type = favorite_article
  // number will be index
- constructor(public payload: number) {}
+ constructor(public payload: Articles) {}
 }
 
-export type Actions = AddArticle | FavoriteArticle
+export type Actions = AddArticle | FavoriteArticle | DeleteArticles

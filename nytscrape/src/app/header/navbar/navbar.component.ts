@@ -16,14 +16,36 @@ export class NavbarComponent implements OnInit {
   addArticle(link, title, desc) {
     this.store.dispatch(new ArticleActions.AddArticle({title, desc, link}))
   }
+  favArticles(link, title, desc) {
+    console.log(link)
+    this.store.dispatch(new ArticleActions.FavoriteArticle({title, desc, link}))
+  }
   ngOnInit() {
   }
   get_articles() {
+    // clear the state so doesn't get moved over each time and always initializes with just what is in the database
+    this.clear_articles()
     this.httpClient.get('http://localhost:8080/api/articles').subscribe(res => {
       // hopefully this red shouldn't matter
-      for (let i = 0; i < res.length; i++) {
-      this.addArticle(res[i].link, res[i].title, res[i].desc)
+      let data: any = res
+      for (let i = 0; i < data.length; i++) {
+      this.addArticle(data[i].link, data[i].title, data[i].desc)
       }
+    })
+  }
+  // if not navigating off the page will also need to delete or not show the standard articles
+  fav_articles() {
+    this.clear_articles()
+    this.httpClient.get('http://localhost:8080/api/favorite').subscribe(res => {
+      for (let i = 0; i < (<any>res).length; i++) {
+        this.favArticles(res[i].link, res[i].title, res[i].desc)
+      }
+    })
+  }
+  clear_articles() {
+    this.store.dispatch(new ArticleActions.DeleteArticles())
+    this.httpClient.delete('http://localhost:8080/api/delete').subscribe(res => {
+      console.log('deleted')
     })
   }
 }

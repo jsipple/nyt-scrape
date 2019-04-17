@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http'
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-
+  // favArticles: Observable<FavArticles[]>
   articles: Observable<Articles[]>
 // not sure why this states that it's not read
   constructor(private http: HttpClient, private store: Store<AppState>) { 
@@ -22,10 +22,11 @@ export class ArticlesComponent implements OnInit {
   ngOnInit() {
   }
   saveArticle(event) {
-    let favor = event.target.attributes.id
-    console.log(favor)
-    this.http.post('http://localhost:8080/api/fav', favor).subscribe(res => {
-      
+    // maybe async if pass this en get error
+    console.log(event)
+    // // must pass in an object it seems
+    // // when using favor doesn't work for some reason
+    this.http.post('http://localhost:8080/api/fav', event).subscribe(res => {
     // should be undefined nothing being returned yet
       console.log(res)
     })

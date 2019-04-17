@@ -1,0 +1,15 @@
+<div class="articles">
+    <ul>
+     <li *ngFor='let article of articles | async'>
+      <h2>{{article.title}} <button class="btn btn-warning">delete Favorite</button><button class="btn btn-primary">add Note</button></h2>
+      <a [href]='article.link' target='_blank'>
+      <p>{{article.desc}}</p></a>
+    </li>
+    </ul>
+   </div>
+   <!-- doesn't update after clicked basically length doesn't seem to update -->
+   <!-- could make another global variable that changes to true -->
+   <div id='noArticle' *ngIf="!articles?.length > 0">
+     No articles press scrape new articles to get the latest news from new york times
+   </div>
+   
