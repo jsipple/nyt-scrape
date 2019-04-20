@@ -1,4 +1,4 @@
-import { Component, Input, onInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Articles } from '../../../models/articles.modal'
