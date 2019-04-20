@@ -13,8 +13,8 @@ import * as ArticleActions from '../../actions/actricles.actions'
 export class NavbarComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, private store: Store<AppState>) { }
-  addArticle(link, title, desc) {
-    this.store.dispatch(new ArticleActions.AddArticle({title, desc, link}))
+  addArticle(link, title, desc, notes) {
+    this.store.dispatch(new ArticleActions.AddArticle({title, desc, link, notes}))
   }
   favArticles(link, title, desc, notes) {
     console.log(link)
@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
       // hopefully this red shouldn't matter
       let data: any = res
       for (let i = 0; i < data.length; i++) {
-      this.addArticle(data[i].link, data[i].title, data[i].desc)
+      this.addArticle(data[i].link, data[i].title, data[i].desc, data[i].notes)
       }
     })
   }
