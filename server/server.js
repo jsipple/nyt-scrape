@@ -12,7 +12,7 @@ app.use(express.json());
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 // mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
-mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true}).catch(err => console.log(err));
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true}).catch(err => console.log(err));
 mongoose.Promise = global.Promise
 const db = require('./models/index')
 
