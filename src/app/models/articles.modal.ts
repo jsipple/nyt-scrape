@@ -3,5 +3,6 @@ export interface Articles {
  desc: string;
  link: string;
  // note sure why but doesn't like the below
- // notes: Array;
+ notes: Array<{note: string}>
+
 }

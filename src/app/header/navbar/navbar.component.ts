@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
   fav_articles() {
     this.clear_articles()
     this.httpClient.get('http://localhost:8080/api/favorite').subscribe(res => {
-      for (let i = 0; i < (<any>res).length; i++) {
+      for (let i = 0; i < (<string>res).length; i++) {
         this.favArticles(res[i].link, res[i].title, res[i].desc, res[i].notes)
       }
     })
