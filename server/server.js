@@ -38,15 +38,10 @@ app.get('/api/favorite', (req, res) => {
   })
 })
 app.post('/api/fav/:id', (req, res) => {
-  db.Note.create(req.body)
-    .then(dbNote => {
-      return db.FavArticle.findOneAndUpdate({_title: req.params.id}, {notes: dbNote._id}, {new: true})
-      .then(favArticle => {
-        res.json(favArticle)
-      }).catch(err => {
-        res.json(err)
-      })
-    })
+  let title = req.body.title
+  let note = req.body.note
+  console.log(req.body)
+  db.FavArticle.findOneAndUpdate({title: title}, {$push: {notes: note}})
 })
 
 app.get('/api/articles', (req, res) => {
@@ -91,6 +86,10 @@ app.get('/api/articles', (req, res) => {
 
 app.delete('/api/delete', (req,res) => {
   db.Article.remove({}).catch(err => console.log(err))
+})
+
+app.delete('/api/deleteOne', (req,res) => {
+    db.FavArticle.deleteOne(req.body).catch(err => console.log(err))
 })
 
 // need to have this link on click then do

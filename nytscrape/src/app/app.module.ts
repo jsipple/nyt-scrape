@@ -11,7 +11,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; // Angular CLI environemnt
 import { FormsModule } from '@angular/forms';
 import { FavArticlesComponent } from './articles/fav-articles/fav-articles.component'
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './articles/fav-articles/modal/modal.component';
 
 const appRoutes: Routes = [
   {path: 'saved', component: FavArticlesComponent},
@@ -26,13 +28,15 @@ const appRoutes: Routes = [
     ArticlesComponent,
     HeaderComponent,
     NavbarComponent,
-    FavArticlesComponent
+    FavArticlesComponent,
+    ModalComponent
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: true}
     ),
+    NgbModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,

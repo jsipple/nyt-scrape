@@ -1,0 +1,25 @@
+<section *ngFor='let article of articles | async'>
+<button type="button" id='article.title' class="btn btn-info btn-lg" (click)='openModal()'>click to open</button>
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header" *ngFor='let article of articles | async; index as i'>
+        <p>{{i}}{{article.title[i]}} Enter you notes below</p>
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <form ng-submit="submitNote()">
+            <input #note type="text" name='note' (keyup.enter)='submitNote(note.value, articles)'>
+        </form>
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+      </div>
+    </div> 
+  </div>
+</div>
+</section>

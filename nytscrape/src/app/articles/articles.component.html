@@ -1,7 +1,7 @@
 <div class="articles">
  <ul>
   <li *ngFor='let article of articles | async'>
-   <h2>{{article.title}} <button class="btn btn-success" id={{article.title}} (click)='saveArticle($event)'>save Article</button></h2>
+   <h2>{{article.title}} <button class="btn btn-success" id={{article.title}} (click)='saveArticle(article)'>save Article</button></h2>
    <a [href]='article.link' target='_blank'>
    <p>{{article.desc}}</p></a>
  </li>

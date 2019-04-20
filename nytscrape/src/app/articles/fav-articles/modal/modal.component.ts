@@ -1,0 +1,38 @@
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs'
+import { Articles } from '../../../models/articles.modal'
+import { Store } from '@ngrx/store'
+import { AppState } from '../../../app.state'
+
+@Component({
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.css']
+})
+export class ModalComponent {
+  display='none'
+
+    // favArticles: Observable<FavArticles[]>
+    articles: Observable<Articles[]>
+  // not sure why this states that it's not read
+    constructor(private store: Store<AppState>, private http: HttpClient) { 
+      this.articles = store.select('articles')
+    }
+  onCloseHandled() {
+    this.display='none'
+  }
+  openModal () {
+    this.display='block'
+    console.log(this.articles)
+  }
+
+
+  submitNote(event, id) {
+    console.log(id.title)
+    // need to grab a value for this
+    // need to add the id of where i'm saving this notes to after /addNote/:id(here)
+    this.http.post('http://localhost:8080/api/addNote/' + id , event).subscribe(res => {
+    })
+  }
+}

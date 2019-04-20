@@ -14,7 +14,10 @@ let articleSchema = new Schema({
  desc: {
   type: String,
   unique: true
- } 
+ },
+ notes: {
+     type: Array,
+ }
 })
 
 let FavArticle = mongoose.model('favArticles', articleSchema)

@@ -1,7 +1,7 @@
 <div class="articles">
     <ul>
      <li *ngFor='let article of articles | async'>
-      <h2>{{article.title}} <button class="btn btn-warning">delete Favorite</button><button class="btn btn-primary">add Note</button></h2>
+      <h2>{{article.title}} <button class="btn btn-warning" (click)='deleteFavorite(article)'>delete Favorite</button><app-modal [articles]={{articles}}></app-modal></h2>
       <a [href]='article.link' target='_blank'>
       <p>{{article.desc}}</p></a>
     </li>
