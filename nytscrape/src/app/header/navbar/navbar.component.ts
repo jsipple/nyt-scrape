@@ -16,9 +16,10 @@ export class NavbarComponent implements OnInit {
   addArticle(link, title, desc) {
     this.store.dispatch(new ArticleActions.AddArticle({title, desc, link}))
   }
-  favArticles(link, title, desc) {
+  favArticles(link, title, desc, notes) {
     console.log(link)
-    this.store.dispatch(new ArticleActions.FavoriteArticle({title, desc, link}))
+    // doesn't like because model folder ask tas or someone about
+    this.store.dispatch(new ArticleActions.FavoriteArticle({title, desc, link, notes}))
   }
   ngOnInit() {
   }
@@ -38,7 +39,7 @@ export class NavbarComponent implements OnInit {
     this.clear_articles()
     this.httpClient.get('http://localhost:8080/api/favorite').subscribe(res => {
       for (let i = 0; i < (<any>res).length; i++) {
-        this.favArticles(res[i].link, res[i].title, res[i].desc)
+        this.favArticles(res[i].link, res[i].title, res[i].desc, res[i].notes)
       }
     })
   }

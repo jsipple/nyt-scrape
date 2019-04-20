@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs'
 import { Articles } from '../../models/articles.modal'
 import { Store } from '@ngrx/store'
@@ -19,13 +19,13 @@ export class FavArticlesComponent implements OnInit {
     this.articles = store.select('articles')
   }
 
-
-
   ngOnInit() {
   }
   deleteFavorite(event) {
-    console.log(event)
-    this.http.delete('http://localhost:8080/api/deleteOne', event).subscribe(res => {
+    // this is coming through as empty
+    let title = event.title
+    console.log(title)
+    this.http.delete('http://localhost:8080/api/deleteOne/' + title, ).subscribe(res => {
       console.log(res)
     })
   }

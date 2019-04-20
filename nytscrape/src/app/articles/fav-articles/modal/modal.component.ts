@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, onInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Articles } from '../../../models/articles.modal'
@@ -10,9 +10,12 @@ import { AppState } from '../../../app.state'
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent {
-  display='none'
 
+
+export class ModalComponent {
+  @Input() title: String
+  @Input() notes: String
+  display='none'  
     // favArticles: Observable<FavArticles[]>
     articles: Observable<Articles[]>
   // not sure why this states that it's not read
@@ -27,12 +30,18 @@ export class ModalComponent {
     console.log(this.articles)
   }
 
-
-  submitNote(event, id) {
-    console.log(id.title)
+  deleteNote(title, note) {
+    console.log(note)
+    this.http.put('http://localhost:8080/api/delNote/' + title + '/' + note).subscribe(res => {
+      console.log(res)
+    })
+  }
+  submitNote(note, id) {
+    console.log(id)
     // need to grab a value for this
     // need to add the id of where i'm saving this notes to after /addNote/:id(here)
-    this.http.post('http://localhost:8080/api/addNote/' + id , event).subscribe(res => {
+    this.http.post('http://localhost:8080/api/addNote/' + id, {note}).subscribe(res => {
+      console.log(res)
     })
   }
 }

@@ -44,6 +44,14 @@ app.post('/api/fav/:id', (req, res) => {
   db.FavArticle.findOneAndUpdate({title: title}, {$push: {notes: note}})
 })
 
+app.post('/api/addNote/:id', (req, res) => {
+  console.log(req.body)
+  console.log(req.params.id)
+  note = req.body.note
+  id = req.params.id
+  db.FavArticle.findOneAndUpdate({title: id}, {$push: {notes: note}}).catch(err => console.log(err))
+})
+
 app.get('/api/articles', (req, res) => {
  axios.get("https://www.nytimes.com/").then(response => {
    const $ = cheerio.load(response.data)
@@ -88,8 +96,20 @@ app.delete('/api/delete', (req,res) => {
   db.Article.remove({}).catch(err => console.log(err))
 })
 
-app.delete('/api/deleteOne', (req,res) => {
-    db.FavArticle.deleteOne(req.body).catch(err => console.log(err))
+app.delete('/api/deleteOne/:id', (req,res) => {
+  // not actually grabbing anything just deleting the first one
+  let title = {title: req.params.id}  
+  console.log(title)
+  db.FavArticle.deleteOne(title).catch(err => console.log(err))
+})
+
+app.put('/api/delNote/:id/:note', (req,res) => {
+  let title = {title: req.params.id}
+  console.log(title)
+  // this works only issue is need to pull again to see changes
+  let note = req.params.note
+  console.log(note)
+  db.FavArticle.update(title, {$pull: {notes: note}}).catch(err => console.log(err))
 })
 
 // need to have this link on click then do

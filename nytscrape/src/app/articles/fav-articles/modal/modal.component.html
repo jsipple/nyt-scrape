@@ -1,25 +1,26 @@
-<section *ngFor='let article of articles | async'>
+<!-- issue is this is only creating one modal need to make it change depending on which clicked -->
+
 <button type="button" id='article.title' class="btn btn-info btn-lg" (click)='openModal()'>click to open</button>
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
-<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+<div *ngFor='let article of articles | async; index as i' class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
 
   <div class="modal-dialog" role="document">
 
     <div class="modal-content">
-      <div class="modal-header" *ngFor='let article of articles | async; index as i'>
-        <p>{{i}}{{article.title[i]}} Enter you notes below</p>
+      <div class="modal-header" >
+        <p>{{title}} Enter you notes below</p>
         <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
       </div>
-      <div class="modal-body">
-        
+      <div class="modal-body" *ngFor='let note of notes'>
+        {{note}} <button class="btn btn-danger" (click)='deleteNote(title, note)'>delete</button>
+        <hr>
       </div>
       <div class="modal-footer">
         <form ng-submit="submitNote()">
-            <input #note type="text" name='note' (keyup.enter)='submitNote(note.value, articles)'>
+            <input #note type="text" name='note' (keyup.enter)='submitNote(note.value, title)'>
         </form>
         <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
       </div>
     </div> 
   </div>
 </div>
-</section>
