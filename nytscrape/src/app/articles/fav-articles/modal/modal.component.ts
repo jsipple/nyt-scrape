@@ -32,7 +32,7 @@ export class ModalComponent {
 
   deleteNote(title, note) {
     console.log(note)
-    this.http.put('http://localhost:8080/api/delNote/' + title + '/' + note).subscribe(res => {
+    this.http.delete('http://localhost:8080/api/delNote/' + title + '/' + note).subscribe(res => {
       console.log(res)
     })
   }

@@ -106,7 +106,7 @@ app.delete('/api/deleteOne/:id', (req,res) => {
 app.put('/api/delNote/:id/:note', (req,res) => {
   let title = {title: req.params.id}
   console.log(title)
-  // this works only issue is need to pull again to see changes
+  // this works only issue is need to pull again to see cha
   let note = req.params.note
   console.log(note)
   db.FavArticle.update(title, {$pull: {notes: note}}).catch(err => console.log(err))
