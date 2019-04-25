@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   get_articles() {
     // clear the state so doesn't get moved over each time and always initializes with just what is in the database
     this.clear_articles()
-    this.httpClient.get('api/articles').subscribe(res => {
+    this.httpClient.get('http://localhost:8080/api/articles').subscribe(res => {
       // hopefully this red shouldn't matter
       let data: any = res
       for (let i = 0; i < data.length; i++) {
@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
   }
   clear_articles() {
     this.store.dispatch(new ArticleActions.DeleteArticles())
-    this.httpClient.delete('/api/delete').subscribe(res => {
+    this.httpClient.delete('http://localhost:8080/api/delete').subscribe(res => {
       console.log('deleted')
     })
   }
