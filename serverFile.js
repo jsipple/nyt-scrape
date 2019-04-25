@@ -1,4 +1,4 @@
-const express = reqire('express');
+const express = require('express');
 const app = express()
 // + direct to static files
 app.use(express.static(__dirname + '/dist'))
