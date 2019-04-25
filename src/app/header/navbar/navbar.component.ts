@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   get_articles() {
     // clear the state so doesn't get moved over each time and always initializes with just what is in the database
     this.clear_articles()
-    this.httpClient.get('http://localhost:8080/api/articles').subscribe(res => {
+    this.httpClient.get('/api/articles').subscribe(res => {
       // hopefully this red shouldn't matter
       let data: any = res
       for (let i = 0; i < data.length; i++) {
@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
   // if not navigating off the page will also need to delete or not show the standard articles
   fav_articles() {
     this.clear_articles()
-    this.httpClient.get('http://localhost:8080/api/favorite').subscribe(res => {
+    this.httpClient.get('/api/favorite').subscribe(res => {
       for (let i = 0; i < (<string>res).length; i++) {
         this.favArticles(res[i].link, res[i].title, res[i].desc, res[i].notes)
       }
@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
   }
   clear_articles() {
     this.store.dispatch(new ArticleActions.DeleteArticles())
-    this.httpClient.delete('http://localhost:8080/api/delete').subscribe(res => {
+    this.httpClient.delete('/api/delete').subscribe(res => {
       console.log('deleted')
     })
   }
