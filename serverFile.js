@@ -4,8 +4,6 @@ const path = require('path')
 // + direct to static files
 const axios = require("axios");
 const cheerio = require("cheerio");
-const express = require("express");
-const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
 app.use(cors())
