@@ -9,9 +9,9 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // mongoose connect stuff see if i should use
-var MONGODB_URI = process.env.MONGODB_URI || "localhost:8080";
-
-// mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
+var MONGODB_URI = process.env.MONGODB_URI;
+const PORT = process.env.PORT || 8080
+// mongoose.connect(MONGODB_URI, {useNelParser: true});
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true}).catch(err => console.log(err));
 mongoose.Promise = global.Promise
 const db = require('./models/index')
@@ -113,7 +113,7 @@ app.put('/api/delNote/:id/:note', (req,res) => {
 })
 
 // need to have this link on click then do
-app.listen(MONGODB_URI, () => {
+app.listen(PORT, () => {
  console.log('listening on port 8080')
 })
 // let art = new Article(results) this will grab results from below(will need to have it in a for loop)
