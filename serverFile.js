@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/dist/nytscrape'))
 // mongoose.connect(MONGODB_URI, {useNelParser: true});
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true}).catch(err => console.log(err));
 mongoose.Promise = global.Promise
-const db = require('./models/index')
+const db = require('./server/models/index')
 
 // move thes
 // think i need to do this to call will be pushing in a bit
@@ -118,7 +118,7 @@ app.put('/api/delNote/:id/:note', (req,res) => {
   db.FavArticle.update(title, {$pull: {notes: note}}).catch(err => console.log(err))
 })
 
-app.listen(process.env.PORT || 8080)
+app.listen(process.env.PORT || 8080) 
 
 app.get('/*', (req, res) => {
  res.sendFile(path.join(__dirname + '/dist/nytscrape/index.html'))
