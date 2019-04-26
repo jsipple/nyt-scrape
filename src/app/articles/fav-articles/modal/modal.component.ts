@@ -32,7 +32,7 @@ export class ModalComponent {
 
   deleteNote(title, note) {
     console.log(note)
-    this.http.delete('http://localhost:8080/api/delNote/' + title + '/' + note).subscribe(res => {
+    this.http.delete('/api/delNote/' + title + '/' + note).subscribe(res => {
       console.log(res)
     })
   }
@@ -40,7 +40,7 @@ export class ModalComponent {
     console.log(id)
     // need to grab a value for this
     // need to add the id of where i'm saving this notes to after /addNote/:id(here)
-    this.http.post('http://localhost:8080/api/addNote/' + id, {note}).subscribe(res => {
+    this.http.post('/api/addNote/' + id, {note}).subscribe(res => {
       console.log(res)
     })
   }

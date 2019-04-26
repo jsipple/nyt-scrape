@@ -8,7 +8,9 @@
 
     <div class="modal-content">
       <div class="modal-header" >
-        <p>{{title}} Enter you notes below</p>
+        <h1>{{title}} </h1>
+        <hr>
+      </p>Enter you notes below</p>
         <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body" *ngFor='let note of notes'>
