@@ -25,7 +25,7 @@ export class FavArticlesComponent implements OnInit {
     // this is coming through as empty
     let title = event.title
     console.log(title)
-    this.http.delete('http://localhost:8080/api/deleteOne/' + title, ).subscribe(res => {
+    this.http.delete('/api/deleteOne/' + title, ).subscribe(res => {
       console.log(res)
     })
   }

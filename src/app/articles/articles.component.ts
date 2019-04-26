@@ -26,7 +26,7 @@ export class ArticlesComponent implements OnInit {
     console.log(event)
     // // must pass in an object it seems
     // // when using favor doesn't work for some reason
-    this.http.post('http://localhost:8080/api/fav', event).subscribe(res => {
+    this.http.post('/api/fav', event).subscribe(res => {
     // should be undefined nothing being returned yet
       console.log(res)
     })
