@@ -1,6 +1,6 @@
 <!-- issue is this is only creating one modal need to make it change depending on which clicked -->
 
-<button type="button" id='article.title' class="btn btn-info btn-lg" (click)='openModal()'>click to open</button>
+<button type="button" id='article.title' class="btn btn-info btn-lg" (click)='openModal()'>notes</button>
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
 <div *ngFor='let article of articles | async; index as i' class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
 
@@ -10,7 +10,6 @@
       <div class="modal-header" >
         <h1>{{title}} </h1>
         <hr>
-      <p>Enter you notes below</p>
         <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body" *ngFor='let note of notes'>
