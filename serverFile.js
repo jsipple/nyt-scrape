@@ -69,7 +69,7 @@ let FavArticle = mongoose.model('favArticles', favArticleSchema)
 app.post('/api/fav', (req, res) => {
   console.log(req.body)
  // comes back as an empty object
- let favArt = new db.FavArticle(req.body)
+ let favArt = new FavArticle(req.body)
  favArt.save()
  // need to find the appropriate article first and store the link title desc as their respective variables
  // let favorite = new FavArticle({link,title,desc})
