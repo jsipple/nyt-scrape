@@ -70,9 +70,10 @@ app.post('/api/fav', (req, res) => {
  let link = req.body.link
  let title = req.body.title
  let desc = req.body.desc
+ let notes = req.body.notes
  // comes back as an empty object
  let favArt = new FavArticle(req.body)
- FavArticle.create( {link, title, desc }).then(results => {
+ FavArticle.create( {link, title, desc, notes }).then(results => {
   res.json(results)
  }).catch(err => console.log(err))
  // need to find the appropriate article first and store the link title desc as their respective variables
@@ -82,7 +83,7 @@ app.post('/api/fav', (req, res) => {
 
 app.get('/api/favorite', (req, res) => {
  console.log('a')
-  FavArticle.find({})
+  FavArticle.find({}) 
   .then(data => {
     res.json(data)
   })
